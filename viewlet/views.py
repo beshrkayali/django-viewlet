@@ -7,7 +7,7 @@ from viewlet.loaders import querydict_to_kwargs
 
 
 def viewlet_view(request, name):
-    context = RequestContext(request)
+    context = RequestContext(request, {'request': request})
     kwargs = querydict_to_kwargs(request.GET)
     output = viewlet.call(name, context, **kwargs)
     return HttpResponse(output)
